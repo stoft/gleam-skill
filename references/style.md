@@ -96,3 +96,17 @@ value
 ```gleam
 value |> should.be_equal(expected)
 ```
+
+## Module and file organization
+
+For small Gleam codebases (for example, under ~1000 lines), start with a single, cohesive module instead of eagerly splitting into many files just because it is a "web app" or something like that. In general Gleam projects should keep related business logic together and only split modules when real reuse or complexity appears.
+
+**Do:** Extract modules based on reuse and dependencies.
+
+- Shared HTML rendering helpers
+- Form-building helpers
+- Functions that operate on a shared data structure or domain type
+
+**Don't:** Split one business workflow across many tiny modules without clear boundaries.
+
+Split things out **from** your business logic (reusable helpers, shared data-structure code), not split up the business logic itself.
